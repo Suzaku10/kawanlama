@@ -1,0 +1,49 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    triggering:
+      events:
+        - tag
+      cancel_previous_builds: true
+    max_build_duration: 120
+    environment:
+      # android_signing:
+      #   - keystore_reference
+      groups:
+        - google_play
+      vars:
+        PACKAGE_NAME: "szk.challange.kawanlama"
+        GOOGLE_PLAY_TRACK: internal
+      flutter: stable
+    scripts:
+      - name: Check Keystore Path
+        script: |
+          echo "$CM_KEYSTORE_PATH" > "$CM_KEY_ALIAS"
+      - name: Set up local.properties
+        script: | 
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: | 
+          flutter packages pub get
+      - name: Build AAB with Flutter
+        script: | 
+          BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
+          flutter build appbundle --release \
+            --build-name=1.0.$BUILD_NUMBER \
+            --build-number=$BUILD_NUMBER
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    # publishing:
+    #   email:
+    #     recipients:
+    #       - yudhistiray198@gmail.com
+    #       - yudhistiray198@outlook.com
+    #     notify:
+    #       success: true
+    #       failure: true
+    #   google_play:
+    #     credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+    #     track: $GOOGLE_PLAY_TRACK
+    #     submit_as_draft: true
