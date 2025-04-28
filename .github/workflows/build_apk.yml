@@ -33,7 +33,7 @@ jobs:
         run: echo "COMMIT_ID=$(git rev-parse --short HEAD)" >> $GITHUB_ENV  # Use $GITHUB_ENV for environment variables
  
       - name: Install dependencies
-        run: flutter pub get  # Using Flutter's pub get instead of dart pub get
+        run: flutter pub upgrade --major-versions  # Using Flutter's pub get instead of dart pub get
 
       - name: Build APK
         run: |
