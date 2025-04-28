@@ -27,10 +27,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Install NDK
-        run: |
-          echo "y" | ${ANDROID_HOME}/cmdline-tools/16.0/bin/sdkmanager --install 'ndk;23.1.7779620'
       
       - name: Set short commit ID
         id: commit_id
