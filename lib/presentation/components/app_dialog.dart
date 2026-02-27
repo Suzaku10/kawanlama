@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:kawanlama/domain/constant/app_colors.dart';
@@ -22,7 +21,9 @@ class AppDialog {
                   height: kToolbarHeight,
                   width: double.infinity,
                   alignment: Alignment.centerRight,
-                  child: IconButton(onPressed: () => context.router.pop(), icon: const Icon(Icons.close)),
+                  child: IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(Icons.close)),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),

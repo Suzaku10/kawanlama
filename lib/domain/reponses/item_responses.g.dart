@@ -11,7 +11,7 @@ ItemResponses _$ItemResponsesFromJson(Map<String, dynamic> json) =>
       arti: json['arti'] as String?,
       asma: json['asma'] as String?,
       audio: json['audio'] as String?,
-      ayat: json['ayat'] as int?,
+      ayat: (json['ayat'] as num?)?.toInt(),
       keterangan: json['keterangan'] as String?,
       nama: json['nama'] as String?,
       nomor: json['nomor'] as String?,

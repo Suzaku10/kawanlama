@@ -328,6 +328,24 @@ class Favorite extends DataClass implements Insertable<Favorite> {
         user: user.present ? user.value : this.user,
         createdAt: createdAt ?? this.createdAt,
       );
+  Favorite copyWithCompanion(FavoritesCompanion data) {
+    return Favorite(
+      id: data.id.present ? data.id.value : this.id,
+      sourceId: data.sourceId.present ? data.sourceId.value : this.sourceId,
+      name: data.name.present ? data.name.value : this.name,
+      description:
+          data.description.present ? data.description.value : this.description,
+      audioUrl: data.audioUrl.present ? data.audioUrl.value : this.audioUrl,
+      number: data.number.present ? data.number.value : this.number,
+      type: data.type.present ? data.type.value : this.type,
+      mean: data.mean.present ? data.mean.value : this.mean,
+      isFavorite:
+          data.isFavorite.present ? data.isFavorite.value : this.isFavorite,
+      user: data.user.present ? data.user.value : this.user,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('Favorite(')
@@ -531,6 +549,7 @@ class FavoritesCompanion extends UpdateCompanion<Favorite> {
 
 abstract class _$MyDatabase extends GeneratedDatabase {
   _$MyDatabase(QueryExecutor e) : super(e);
+  $MyDatabaseManager get managers => $MyDatabaseManager(this);
   late final $FavoritesTable favorites = $FavoritesTable(this);
   late final FavoritesDao favoritesDao = FavoritesDao(this as MyDatabase);
   @override
@@ -538,4 +557,267 @@ abstract class _$MyDatabase extends GeneratedDatabase {
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [favorites];
+}
+
+typedef $$FavoritesTableCreateCompanionBuilder = FavoritesCompanion Function({
+  Value<String> id,
+  required String sourceId,
+  Value<String?> name,
+  Value<String?> description,
+  Value<String?> audioUrl,
+  Value<int?> number,
+  Value<String?> type,
+  Value<String?> mean,
+  required bool isFavorite,
+  Value<String?> user,
+  Value<DateTime> createdAt,
+  Value<int> rowid,
+});
+typedef $$FavoritesTableUpdateCompanionBuilder = FavoritesCompanion Function({
+  Value<String> id,
+  Value<String> sourceId,
+  Value<String?> name,
+  Value<String?> description,
+  Value<String?> audioUrl,
+  Value<int?> number,
+  Value<String?> type,
+  Value<String?> mean,
+  Value<bool> isFavorite,
+  Value<String?> user,
+  Value<DateTime> createdAt,
+  Value<int> rowid,
+});
+
+class $$FavoritesTableFilterComposer
+    extends Composer<_$MyDatabase, $FavoritesTable> {
+  $$FavoritesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get sourceId => $composableBuilder(
+      column: $table.sourceId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get description => $composableBuilder(
+      column: $table.description, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get audioUrl => $composableBuilder(
+      column: $table.audioUrl, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get number => $composableBuilder(
+      column: $table.number, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get mean => $composableBuilder(
+      column: $table.mean, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isFavorite => $composableBuilder(
+      column: $table.isFavorite, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get user => $composableBuilder(
+      column: $table.user, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$FavoritesTableOrderingComposer
+    extends Composer<_$MyDatabase, $FavoritesTable> {
+  $$FavoritesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get sourceId => $composableBuilder(
+      column: $table.sourceId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get description => $composableBuilder(
+      column: $table.description, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get audioUrl => $composableBuilder(
+      column: $table.audioUrl, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get number => $composableBuilder(
+      column: $table.number, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get mean => $composableBuilder(
+      column: $table.mean, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get isFavorite => $composableBuilder(
+      column: $table.isFavorite, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get user => $composableBuilder(
+      column: $table.user, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+}
+
+class $$FavoritesTableAnnotationComposer
+    extends Composer<_$MyDatabase, $FavoritesTable> {
+  $$FavoritesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get sourceId =>
+      $composableBuilder(column: $table.sourceId, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+      column: $table.description, builder: (column) => column);
+
+  GeneratedColumn<String> get audioUrl =>
+      $composableBuilder(column: $table.audioUrl, builder: (column) => column);
+
+  GeneratedColumn<int> get number =>
+      $composableBuilder(column: $table.number, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get mean =>
+      $composableBuilder(column: $table.mean, builder: (column) => column);
+
+  GeneratedColumn<bool> get isFavorite => $composableBuilder(
+      column: $table.isFavorite, builder: (column) => column);
+
+  GeneratedColumn<String> get user =>
+      $composableBuilder(column: $table.user, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$FavoritesTableTableManager extends RootTableManager<
+    _$MyDatabase,
+    $FavoritesTable,
+    Favorite,
+    $$FavoritesTableFilterComposer,
+    $$FavoritesTableOrderingComposer,
+    $$FavoritesTableAnnotationComposer,
+    $$FavoritesTableCreateCompanionBuilder,
+    $$FavoritesTableUpdateCompanionBuilder,
+    (Favorite, BaseReferences<_$MyDatabase, $FavoritesTable, Favorite>),
+    Favorite,
+    PrefetchHooks Function()> {
+  $$FavoritesTableTableManager(_$MyDatabase db, $FavoritesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FavoritesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FavoritesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FavoritesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> sourceId = const Value.absent(),
+            Value<String?> name = const Value.absent(),
+            Value<String?> description = const Value.absent(),
+            Value<String?> audioUrl = const Value.absent(),
+            Value<int?> number = const Value.absent(),
+            Value<String?> type = const Value.absent(),
+            Value<String?> mean = const Value.absent(),
+            Value<bool> isFavorite = const Value.absent(),
+            Value<String?> user = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              FavoritesCompanion(
+            id: id,
+            sourceId: sourceId,
+            name: name,
+            description: description,
+            audioUrl: audioUrl,
+            number: number,
+            type: type,
+            mean: mean,
+            isFavorite: isFavorite,
+            user: user,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            required String sourceId,
+            Value<String?> name = const Value.absent(),
+            Value<String?> description = const Value.absent(),
+            Value<String?> audioUrl = const Value.absent(),
+            Value<int?> number = const Value.absent(),
+            Value<String?> type = const Value.absent(),
+            Value<String?> mean = const Value.absent(),
+            required bool isFavorite,
+            Value<String?> user = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              FavoritesCompanion.insert(
+            id: id,
+            sourceId: sourceId,
+            name: name,
+            description: description,
+            audioUrl: audioUrl,
+            number: number,
+            type: type,
+            mean: mean,
+            isFavorite: isFavorite,
+            user: user,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$FavoritesTableProcessedTableManager = ProcessedTableManager<
+    _$MyDatabase,
+    $FavoritesTable,
+    Favorite,
+    $$FavoritesTableFilterComposer,
+    $$FavoritesTableOrderingComposer,
+    $$FavoritesTableAnnotationComposer,
+    $$FavoritesTableCreateCompanionBuilder,
+    $$FavoritesTableUpdateCompanionBuilder,
+    (Favorite, BaseReferences<_$MyDatabase, $FavoritesTable, Favorite>),
+    Favorite,
+    PrefetchHooks Function()>;
+
+class $MyDatabaseManager {
+  final _$MyDatabase _db;
+  $MyDatabaseManager(this._db);
+  $$FavoritesTableTableManager get favorites =>
+      $$FavoritesTableTableManager(_db, _db.favorites);
 }

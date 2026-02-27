@@ -11,7 +11,7 @@ part 'app_router.gr.dart';
 
 @lazySingleton
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   final AppRouteGuard _guard;
 
   AppRouter(this._guard);
@@ -26,8 +26,10 @@ class AppRouter extends _$AppRouter {
             initial: true,
             children: [
               RedirectRoute(path: '', redirectTo: AppPages.homeContactRoute),
-              AutoRoute(path: AppPages.homeContactRoute, page: ContactRoute.page),
-              AutoRoute(path: AppPages.homeFavoriteRoute, page: FavoriteRoute.page),
+              AutoRoute(
+                  path: AppPages.homeContactRoute, page: ContactRoute.page),
+              AutoRoute(
+                  path: AppPages.homeFavoriteRoute, page: FavoriteRoute.page),
             ]),
       ];
 }
